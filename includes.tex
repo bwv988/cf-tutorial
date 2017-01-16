@@ -1,0 +1,29 @@
+% Custome commands and styles to be used in my RMarkdown files.
+% RS09022015
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{mathtools}
+% Load the next package to prevent errors to do with "unknown graphics extensions.
+\usepackage{grffile}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\expt}[1]{\mathbb{E}({#1})}
+\newcommand{\hvec}[1]{\hat{\underline{#1}}}
+\renewcommand{\vec}[1]{\underline{#1}}
+
+\newcommand{\FIXME}[1]{
+  \noindent
+  {\color{red} FIXME: #1}
+}
+
+\newcommand{\HIGHLIGHT}[1]{
+  \noindent
+  % {\color{MidnightBlue}#1}
+  {\color{blue}#1}
+}
+
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\def\UrlBreaks{\do\/\do-}

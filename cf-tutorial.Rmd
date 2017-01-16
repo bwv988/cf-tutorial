@@ -1,0 +1,46 @@
+---
+title: "Short Introduction to Collaborative Filtering"
+author:
+  - name: Ralph Schlosser
+    email: ralph.schlosser@gmai.com
+
+abstract: |
+  This document provides a very short introduction to building Recommender Systems using Collaborative Filtering and Alternating Least Squares.
+
+bibliography: cite.bib
+output: rticles::elsevier_article
+---
+
+```{r prep, eval=FALSE, echo=FALSE, message=FALSE}
+
+```
+
+# Introduction
+
+# Intuition
+
+* Latent, i.e. unobserverd factors
+* Matrix decomposition
+* Sparse matrix
+* SVD: Correct but computationally intensive
+* ALS: Approximation
+* Simple to parallelize; ideally suited to Spark
+
+
+
+# Appendix
+
+## R code
+
+```{r ref.label="prep", eval=FALSE}
+```
+
+### Data set
+
+The data set...
+
+\url{http://some.where.de}
+
+
+# References
+
