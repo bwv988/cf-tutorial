@@ -1,46 +1,75 @@
 ---
-title: "Short Introduction to Collaborative Filtering"
-author:
-  - name: Ralph Schlosser
-    email: ralph.schlosser@gmai.com
-
-abstract: |
-  This document provides a very short introduction to building Recommender Systems using Collaborative Filtering and Alternating Least Squares.
-
-bibliography: cite.bib
-output: rticles::elsevier_article
+title: "CF Tutorial"
+subtitle: "Some Notes on Collaborative Filtering"
+author: "Ralph Schlosser"
+date: "February 2017"
+output:
+  beamer_presentation:
+    incremental: false
+    includes:
+      in_header: [mystyle.tex, settings.tex]
+    keep_tex: true
 ---
 
-```{r prep, eval=FALSE, echo=FALSE, message=FALSE}
+## Overview
 
+* Introduction
+* Model-based Collaborative Filtering
+* Alternating Least Squares: Intuition
+
+
+## Introduction
+
+* Want to predict user ratings for movies which they haven't rated.
+* This can be achieved with \HIGHLIGHT{Collaborative Filtering}.
+* CF is not *one* algorithm, it's a broad set of different techniques.
+* Here: Model-based approach using \HIGHLIGHT{Alternating Least Squares}.
+
+| Users  	| Movie 1 	| Movie 2 	| Movie 3 	| ...     	| 
+|--------	|---------	|---------	|---------	|---------	|
+| User 1 	| \orange{?}| 5.9     	| 2.6     	| ...       |
+| User 2 	| 1.4     	| 5.8     	| \orange{?}| ...       |
+| User 3	| 1.5     	| 5.8     	| \orange{?}| ...       |
+| ...     | ...       | ...       | ...       | ...       |
+
+## Model-based Collaborative Filtering
+
+* Have a *sparse* and usually large matrix $\mathbf{R} \in \mathbb{R}^{u \times v}$ of user ratings.
+* $u$ - Number of users (rows)
+* $v$ - Number of movies (columns)
+* $R_{ij}$ - Rating of user $i$ for movie $j$.
+
+```{r, echo=FALSE, eval=FALSE}
+# Create random matrix.
+replicate(5, round(runif(5), 2) * 10)
 ```
 
-# Introduction
+* Example:
 
-# Intuition
-
-* Latent, i.e. unobserverd factors
-* Matrix decomposition
-* Sparse matrix
-* SVD: Correct but computationally intensive
-* ALS: Approximation
-* Simple to parallelize; ideally suited to Spark
-
-
-
-# Appendix
-
-## R code
-
-```{r ref.label="prep", eval=FALSE}
-```
-
-### Data set
-
-The data set...
-
-\url{http://some.where.de}
+$$
+\mathbf{R} = 
+\begin{pmatrix}
+2.2 & 2.7 &  7.7  & 2.9 &  3.3\\
+? & ? & 2.6 & 1.2 & 8.9\\
+7.0 & ? & 3.5 & 0.7 & 2.1\\
+9.1 & 0.6 & ? & 1.8 & ?\\
+? & ? & 7.4 & 3.1 & 5.9
+\end{pmatrix}
+$$
 
 
-# References
+## Alternating Least Squares: Intuition
 
+* Model-based: Try to uncover \HIGHLIGHT{latent factors} that model the data.
+* Can be achieved through approximate matrix decomposition: $\mathbf{R} \approx \mathbf{U} \times \mathbf{V}^{T}$
+
+\begin{center}
+\includegraphics[scale=0.5]{fig/mat_decomp.pdf}
+\end{center}
+
+* The $k$ columns in  $\mathbf{U}$ and $\mathbf{V}^{T}$ correspond to the latent, i.e. *unobserved* factors.
+* \orange{ALS}: Approximate $\mathbf{U}$ and $\mathbf{V}$ through linear regression.
+
+## Links
+
+\FIXME{Add links}
